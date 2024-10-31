@@ -3,7 +3,7 @@
 # 10/31/2024
 # Lab 07
 # Lab Section: 13
-# Sources, people worked with, help given to: 
+# Sources, people worked with, help given to: Cooper , Matthew Curl
 # your
 # comments
 # here
@@ -17,13 +17,18 @@
     # If a user did not enter a number output a statement saying so
 # You will continue to prompt the user until a proper integer value is entered
 
-# I can start with a while loop to find the factorials. I can make the use be able to escape the operation or return to the start through 'EXIT'
+# I can start with a while loop to find the factorials. I can make the use be able to escape the operation and go to the next one through the use of 'EXIT' making the loop break
 
 
 while True:
     user_upper_bound = input("Please enter a positive number in order to calculate the factorial (or enter 'EXIT' to complete the sequence): ")
+
+
     if user_upper_bound.upper() == 'EXIT':
         break
+
+# I can then use the 'isdigit()' to chekc that the entered character is a number and then create a function that finds the factorial of the entered value
+
     if user_upper_bound.isdigit():
         user_upper_bound = int(user_upper_bound)
         factorial = 1
@@ -31,6 +36,8 @@ while True:
             factorial *= i
         print(f"The result of the factorial based on the given bound is {factorial}")
         break
+
+
     else:
         print("Invalid value. Please enter a positive number.")
 
@@ -57,17 +64,26 @@ print("*"*75)
 num_sum = 0 
 
 while True:
-    upper_bound = input("Please enter a positive integer (or type 'EXIT' to be done): ")
-    if upper_bound.upper() == 'EXIT':
+    user_input = input("Please enter a positive integer (or type 'EXIT' to be done): ")
+
+
+    if user_input.upper() == 'EXIT':
         print(f"Your final sum is {num_sum}")
         break
-    if upper_bound.startswith('-'):
-        if upper_bound[1:].isdigit():
-            num_sum += int(upper_bound)
+
+
+    if user_input.startswith('-'):
+
+        if user_input[1:].isdigit():
+            num_sum += int(user_input)
         else:
             print('Invalid value. Please enter a valid number.')
-    elif upper_bound.isdigit():
-        num_sum += int(upper_bound)
+
+
+    elif user_input.isdigit():
+        num_sum += int(user_input)
+
+
     else:
         print('Invalid value. Please enter a valid number.')
 
@@ -94,45 +110,52 @@ print("*"*75)
 
 
 while True:
-    user_input = input("Please enter a calculation in the form of 'operand operator opernad' (or enter 'EXIT' to quit): ")
+    user_input = input("Please enter a calculation in the form of 'operand operator operand' (or enter 'EXIT' to quit): ")
+
+
     if user_input.upper() == 'EXIT':
         break
     
     user_input = user_input.replace(" ","")
-    working_operators = ["+", "-", "/", "*" ,"%"]
+    working_operators = "+-/*%"
     operator = None
 
     for ops in working_operators:
         if ops in user_input:
                 operator = ops
-                
-        if operator:
-            operands = user_input.split(operator)
-            if len(operands) == 2 and all(op.isdigit() for op in operands):
-                number1 = int(operands[0])
-                number2 = int(operands[1])
-                if operator == "+":
-                    resulting_value = number1 + number2
+                break
+        
+    if operator:
+        operands = user_input.split(operator)
+
+        if len(operands) == 2 and all(op.isdigit() for op in operands):
+            number1 = int(operands[0])
+            number2 = int(operands[1])
+
+            if operator == "+":
+                resulting_value = number1 + number2
                     
-                if operator == "-":
-                    resulting_value = number1 - number2
+            elif operator == "-":
+                resulting_value = number1 - number2
                     
-                if operator == "/":
-                    if number2 != 0:
-                        resulting_value = number1 / number2
+            elif operator == "/":
+                if number2 != 0:
+                    resulting_value = number1 / number2
                         
-                    else:
-                        print("Calculator Error: Unable to Divide by Zero")
-                        continue
-                if operator == "*":
-                    resulting_value = number1 * number2 
+                else:
+                    print("Calculator Error: Unable to Divide by Zero")
+                    continue
+
+            elif operator == "*":
+                resulting_value = number1 * number2 
                     
-                if operator == "%":
-                    resulting_value = number1 % number2
+            elif operator == "%":
+                resulting_value = number1 % number2
                     
-                print(f"The result of the calculation is: {resulting_value}")
-            else:
-                print("Invalid value. Please enter a valid calculation with two valid numbers and a valid operation.")
+            print(f"The result of the calculation is: {resulting_value}")
+
         else:
-            print("Invalid value. Please include a valid operator. These include '+', '-', '/', '*', and '%'. Thank you.")
-                    
+            print("Invalid value. Please enter a valid calculation with two valid numbers and a valid operation.")
+    else:
+        print("Invalid value. Please include a valid operator. These include: '+', '-', '/', '*', and '%'. Thank you.")
+            
