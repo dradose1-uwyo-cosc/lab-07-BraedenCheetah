@@ -17,11 +17,13 @@
     # If a user did not enter a number output a statement saying so
 # You will continue to prompt the user until a proper integer value is entered
 
+# I can start with a while loop to find the factorials. I can make the use be able to escape the operation or return to the start through 'EXIT'
+
 def factorial_calculator():
     while True:
         user_upper_bound = input("Please enter a positive number in order to calculate the factorial (or enter 'EXIT' to quit out): ")
         if user_upper_bound.upper() == 'EXIT':
-            return
+            break
         if user_upper_bound.isdigit():
             user_upper_bound = int(user_upper_bound)
             factorial = 1
@@ -31,6 +33,9 @@ def factorial_calculator():
             break
         else:
             print("Invalid value. Please enter a positive number.")
+
+if __name__ == "__main__":
+    factorial_calculator()
 
 print("*"*75)
 
@@ -49,7 +54,7 @@ print("*"*75)
 # All this together means you will have an intensive while loop that includes multiple if statements, likely with some nesting 
 # The sum should start at 0 
 
-def numerical_sum():
+def numerical_sum_calculator():
 
     num_sum = 0 
 
@@ -67,8 +72,12 @@ def numerical_sum():
             num_sum += int(upper_bound)
         else:
             print('Invalid value. Please enter a valid number.')
-        
+
+if __name__ == "__main__":
+    numerical_sum_calculator()
+
 print("*"*75)
+
 
 # Now you will be creating a two operand calculator
 # It will support the following operators: +,-,/,*,% 
@@ -87,4 +96,45 @@ print("*"*75)
 # Print the result of the equation
 # Again, loop through prompting the user for input until `exit` in any casing is input 
 
-        
+def basic_calculator():
+
+        while True:
+            user_input = input("Please enter a calculation in the form of 'operand operator opernad' (or enter 'EXIT' to quit): ")
+            if user_input.upper() == 'EXIT':
+                return
+            
+            user_input = user_input.replace(" ","")
+            working_operators = ["+", "-", "/", "*" ,"%"]
+            operator = None
+
+            for operat in working_operators:
+                if operat in user_input:
+                    operator = operat
+                    break
+            if operator:
+                operands = user_input.split(operator)
+                if len(operands) == 2 and all(op.digits() for op in operands):
+                    number1 = int(operands[0])
+                    number2 = int(operands[1])
+                    if operator == "+":
+                        resulting_value = number1 + number2
+                    elif operator == "-":
+                        resulting_value = number1 - number2
+                    elif operator == "/":
+                        if number2 != 0:
+                            resulting_value = number1 / number2
+                        else:
+                            print("Calculator Error: Unable to Divide by Zero")
+                            continue
+                    elif operator == "*":
+                        resulting_value = number1 * number2 
+                    elif operator == "%":
+                        resulting_value = number1 % number2
+                    print(f"The result of the calculation is: {resulting_value}")
+                else:
+                    print("Invalid value. Please enter a valid calculation with two valid numbers and a valid operation.")
+            else:
+                print("Invalid value. Please include a valid operator. These include '+', '-', '/', '*', and '%'. Thank you.")
+                    
+if __name__ == "__main__":
+    basic_calculator()
