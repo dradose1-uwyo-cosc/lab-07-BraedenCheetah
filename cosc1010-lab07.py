@@ -1,8 +1,8 @@
-# Your Name Here
+# Braeden Kirby
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
+# 10/31/2024
+# Lab 07
+# Lab Section: 13
 # Sources, people worked with, help given to: 
 # your
 # comments
@@ -17,11 +17,23 @@
     # If a user did not enter a number output a statement saying so
 # You will continue to prompt the user until a proper integer value is entered
 
-factorial = 1
-
-print(f"The result of the factorial based on the given bound is {factorial}")
+def factorial_calculator():
+    while True:
+        user_upper_bound = input("Please enter a positive number in order to calculate the factorial (or enter 'EXIT' to quit out): ")
+        if user_upper_bound.upper() == 'EXIT':
+            return
+        if user_upper_bound.isdigit():
+            user_upper_bound = int(user_upper_bound)
+            factorial = 1
+            for i in range(1, user_upper_bound + 1):
+                factorial *= i
+            print(f"The result of the factorial based on the given bound is {factorial}")
+            break
+        else:
+            print("Invalid value. Please enter a positive number.")
 
 print("*"*75)
+
 # Create a while loop that prompts a user for input of an integer values
 # Sum all inputs. When the user enters 'exit' (regardless of casing) end the loop
 # Upon ending the loop print the sum
@@ -37,11 +49,27 @@ print("*"*75)
 # All this together means you will have an intensive while loop that includes multiple if statements, likely with some nesting 
 # The sum should start at 0 
 
-num_sum = 0 
+def numerical_sum():
 
-print(f"Your final sum is {num_sum}")
+    num_sum = 0 
 
+    while True:
+        upper_bound = input("Please enter a positive integer (or type 'EXIT' to be done): ")
+        if upper_bound.upper() == 'EXIT':
+            print(f"Your final sum is {num_sum}")
+            return
+        if upper_bound.startswith('-'):
+            if upper_bound[1:].isdigit():
+                num_sum += int(upper_bound)
+            else:
+                print('Invalid value. Please enter a valid number.')
+        elif upper_bound.isdigit():
+            num_sum += int(upper_bound)
+        else:
+            print('Invalid value. Please enter a valid number.')
+        
 print("*"*75)
+
 # Now you will be creating a two operand calculator
 # It will support the following operators: +,-,/,*,% 
 # So accepted input is of the form `operand operator operand` 
