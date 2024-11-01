@@ -1,9 +1,9 @@
 # Braeden Kirby
 # UWYO COSC 1010
-# 10/31/2024
+# Submission Date: 10/31/2024
 # Lab 07
 # Lab Section: 13
-# Sources, people worked with, help given to: Cooper , Matthew Curl
+# Sources, people worked with, help given to: Cooper Lilly, Matthew Curl
 # your
 # comments
 # here
@@ -60,6 +60,7 @@ print("*"*75)
 # The sum should start at 0 
 
 
+# I can use another while loop to make a sumnation calculator and force the values to be added, those that are input
 
 num_sum = 0 
 
@@ -108,6 +109,7 @@ print("*"*75)
 # Print the result of the equation
 # Again, loop through prompting the user for input until `exit` in any casing is input 
 
+# I can use a final while loop to establish the operators and allow for the input equation to be calculated 
 
 while True:
     user_input = input("Please enter a calculation in the form of 'operand operator operand' (or enter 'EXIT' to quit): ")
@@ -115,9 +117,11 @@ while True:
 
     if user_input.upper() == 'EXIT':
         break
+
+# I can make it so the spaces are replaced with nothing so that the code doesn't get confused and output an error becuase there is space in-between the values
     
     user_input = user_input.replace(" ","")
-    working_operators = "+-/*%"
+    working_operators = ["+", "-", "/", "*", "%"]
     operator = None
 
     for ops in working_operators:
@@ -127,6 +131,8 @@ while True:
         
     if operator:
         operands = user_input.split(operator)
+
+# I can check that there are only two operands and make it so that the code checks that the operands are actually valid values
 
         if len(operands) == 2 and all(op.isdigit() for op in operands):
             number1 = int(operands[0])
@@ -143,7 +149,7 @@ while True:
                     resulting_value = number1 / number2
                         
                 else:
-                    print("Calculator Error: Unable to Divide by Zero")
+                    print("Calculator Error: Unable to Divide by Zero. Try again.")
                     continue
 
             elif operator == "*":
@@ -155,7 +161,6 @@ while True:
             print(f"The result of the calculation is: {resulting_value}")
 
         else:
-            print("Invalid value. Please enter a valid calculation with two valid numbers and a valid operation.")
+            print("Invalid value. Please enter a valid calculation with two valid numbers and a valid operation. Thank you.")
     else:
         print("Invalid value. Please include a valid operator. These include: '+', '-', '/', '*', and '%'. Thank you.")
-            
